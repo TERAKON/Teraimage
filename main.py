@@ -366,3 +366,8 @@ def main():
 
 if __name__ == "__main__":
     main() 
+# test_vulnerability.py
+import subprocess
+
+user_input = "echo 'This is a test vulnerability'"  # Пример инъекции
+subprocess.run(user_input, shell=True)  # CodeQL должен это обнаружить
