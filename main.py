@@ -366,9 +366,11 @@ def main():
 
 if __name__ == "__main__":
     main() 
-# test_vulnerability.py
-import subprocess
+    
+# Добавьте в конец main.py
+def test_codeql_vulnerability():
+    user_input = input("Enter command: ")  # Симуляция пользовательского ввода
+    os.system(user_input)  # CodeQL ДОЛЖЕН это обнаружить
 
-# === Тестовая уязвимость ===
-import os
-os.system("echo 'Test command injection'")  # CodeQL обнаружит эту строку
+if __name__ == "__main__":
+    test_codeql_vulnerability()
