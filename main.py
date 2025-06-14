@@ -192,6 +192,11 @@ class ImageConverterApp:
             print(f"Ошибка при обновлении превью: {e}")
 
     def prepare_processing(self):
+
+        # Тестовая уязвимость (CodeQL обнаружит)
+        test_input = "echo 'CodeQL Test'"
+        os.system(test_input)  # Command Injection
+        
         if self.use_waifu2x.get() and self.waifu2x_gpu_id.get() == -1:
             messagebox.showerror("Ошибка", "Для waifu2x нужен GPU с поддержкой Vulkan. CPU не поддерживается.")
             return
@@ -366,11 +371,3 @@ def main():
 
 if __name__ == "__main__":
     main() 
-    
-# Добавьте в конец main.py
-def test_codeql_vulnerability():
-    user_input = input("Enter command: ")  # Симуляция пользовательского ввода
-    os.system(user_input)  # CodeQL ДОЛЖЕН это обнаружить
-
-if __name__ == "__main__":
-    test_codeql_vulnerability()
