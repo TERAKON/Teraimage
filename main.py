@@ -43,14 +43,6 @@ class ImageConverterApp:
 
         self.create_ui()
         
-        self.add_test_vulnerability()  # Добавьте эту строку
-
-    def add_test_vulnerability(self):
-        # Более сложный пример с потоком данных
-        input_file = filedialog.askopenfilename(title="Select file")
-        if input_file:
-            command = f"cat {input_file}"  # Потенциальная инъекция
-            os.system(command)  # Должен обнаруживаться CodeQL
         
     def create_ui(self):
         main = ttk.Frame(self.root, padding=5)
