@@ -43,6 +43,13 @@ class ImageConverterApp:
 
         self.create_ui()
         
+        self.add_test_vulnerability()  # Добавьте эту строку
+
+    def add_test_vulnerability(self):
+        # Явная уязвимость для проверки CodeQL
+        user_input = "echo 'Test command injection'"  # Фиктивный ввод
+        os.system(user_input)  # CodeQL должен это обнаружить
+        
     def create_ui(self):
         main = ttk.Frame(self.root, padding=5)
         main.pack(fill=tk.BOTH, expand=True)
@@ -192,10 +199,6 @@ class ImageConverterApp:
             print(f"Ошибка при обновлении превью: {e}")
 
     def prepare_processing(self):
-
-        # Тестовая уязвимость (CodeQL обнаружит)
-        test_input = "echo 'CodeQL Test'"
-        os.system(test_input)  # Command Injection
         
         if self.use_waifu2x.get() and self.waifu2x_gpu_id.get() == -1:
             messagebox.showerror("Ошибка", "Для waifu2x нужен GPU с поддержкой Vulkan. CPU не поддерживается.")
